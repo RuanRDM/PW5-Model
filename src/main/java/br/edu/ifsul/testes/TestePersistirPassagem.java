@@ -23,16 +23,16 @@ public class TestePersistirPassagem {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PW5-Model-PU");
         EntityManager em = emf.createEntityManager();
         
-        //VooAgendado v = em.find(VooAgendado.class, 1);
+        VooAgendado v = em.find(VooAgendado.class, 2);
         
         Passagem p = new Passagem();
         
         p.setBagagem(3);
         p.setDataCompra(Calendar.getInstance());
-        p.setClasse(em.find(Classe.class, 1));
-        p.setPessoa(em.find(Pessoa.class, 1));
+        p.setClasse(em.find(Classe.class, 9));
+        p.setPessoa(em.find(Pessoa.class, 10));
         
-        //v.adicionarPassagem(p);
+        v.adicionarPassagem(p);
         em.getTransaction().begin();
         em.persist(p);
         em.getTransaction().commit();

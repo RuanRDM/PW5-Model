@@ -47,12 +47,11 @@ public class VooAgendado implements Serializable{
     @NotNull(message = "A data deve ser informada")
     @Column(name = "data", nullable = false)
     private Calendar data;
-    @NotNull(message = "O Voo deve ser informado")
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)    
+    @JoinColumn(name = "voo_id", referencedColumnName = "descricao", nullable = false)    
     private Voo voo;
-    @OneToMany(mappedBy = "passagem", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Passagem> passagem = new ArrayList<>();
+    @OneToMany(mappedBy = "vooagendado", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Passagem> passagens = new ArrayList<>();
     
     
     
@@ -62,7 +61,30 @@ public class VooAgendado implements Serializable{
     
     public void adicionarPassagem(Passagem obj){
         obj.setVooagendado(this);
-        this.getPassagem().add(obj);
+        this.getPassagens().add(obj);
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.getId());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VooAgendado other = (VooAgendado) obj;
+        return Objects.equals(this.getId(), other.getId());
     }
 
     public Integer getId() {
@@ -103,36 +125,14 @@ public class VooAgendado implements Serializable{
 
     public void setVoo(Voo voo) {
         this.voo = voo;
-
-    }
-    public List<Passagem> getPassagem() {
-        return passagem;
     }
 
-    public void setPassagem(List<Passagem> passagem) {
-        this.passagem = passagem;
+    public List<Passagem> getPassagens() {
+        return passagens;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final VooAgendado other = (VooAgendado) obj;
-        return Objects.equals(this.id, other.id);
+    public void setPassagens(List<Passagem> passagens) {
+        this.passagens = passagens;
     }
     
 }

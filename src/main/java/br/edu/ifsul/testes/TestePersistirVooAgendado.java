@@ -26,8 +26,8 @@ public class TestePersistirVooAgendado {
         v.setAeronave("TecoTeco");
         v.setData(Calendar.getInstance());
         v.setTotalPassageiros(6);
-        v.setVoo(em.find(Voo.class, 1));
-        //v.getPassagem().add(em.find(Passagem.class, 1));
+        v.setVoo(em.find(Voo.class, 13));
+        //v.getPassagens().add(em.find(Passagem.class, 7));
 
         
         em.getTransaction().begin();

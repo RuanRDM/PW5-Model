@@ -27,12 +27,10 @@ public class TestePersistirVoo {
         
         
         v.setAtivo(true);
-        //v.setEscalas(em.find(Aeroporto.class, 1));
+        v.setEscalas(em.find(Aeroporto.class, 13));
         v.setTempoEstimado(65.0);
         v.setPeriodicidade("1 vez ano");
         v.setDescricao("voo para disney");
-        //v.getAeroportos().add(em.find(Aeroporto.class, 1));
-        //v.getVooagendado().add(em.find(VooAgendado.class, 1));
        
 
         em.getTransaction().begin();

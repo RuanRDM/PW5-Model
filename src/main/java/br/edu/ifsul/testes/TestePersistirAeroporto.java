@@ -4,6 +4,7 @@ package br.edu.ifsul.testes;
 import br.edu.ifsul.modelo.Aeroporto;
 import br.edu.ifsul.modelo.Cidade;
 import br.edu.ifsul.modelo.Pessoa;
+import br.edu.ifsul.modelo.Voo;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,12 +23,13 @@ public class TestePersistirAeroporto {
         
         Aeroporto a = new Aeroporto();
         
-        a.setCidade(em.find(Cidade.class, 1));
+        a.setCidade(em.find(Cidade.class, 14));
         a.setNome("SantosDrumond");
         a.setOperacaoNoturna(true);
         
+        //Voo v = em.find(Voo.class,10); 
+        //a.getVoos().add(v);
         
-        //v.adicionarPassagem(p);
         em.getTransaction().begin();
         em.persist(a);
         em.getTransaction().commit();

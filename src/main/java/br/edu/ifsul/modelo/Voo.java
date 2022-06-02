@@ -49,28 +49,35 @@ public class Voo implements Serializable{
     @Length(max = 50, message = "A aeronave não pode ter mais que {max} caracteres")
     @Column(name = "periodicidade", length = 40, nullable = false)
     private String periodicidade;
-    @NotNull
-    @JoinColumn(name = "escalas", referencedColumnName = "id", nullable = false)    
+    @JoinColumn(name = "escalas", referencedColumnName = "nome", nullable = false)    
     @ManyToOne
     private Aeroporto escalas;
-    @OneToMany(mappedBy = "vooagendado", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<VooAgendado> vooagendado = new ArrayList<>();
     
-    @ManyToMany
-    @JoinTable(name = "aeroporto",
-            // se refere a classe voo
-            joinColumns = 
-                    @JoinColumn(name = "id", referencedColumnName = "id", 
-                            nullable = false),
-            // se refere ao tipo da lista <aeroporto>
-            inverseJoinColumns = 
-                    @JoinColumn(name = "aeroporto", referencedColumnName = "id", 
-                            nullable = false)
-            )            
-    private Set<Aeroporto> aeroportos = new HashSet<>();
     
     public Voo(){
         
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 11 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Voo other = (Voo) obj;
+        return Objects.equals(this.id, other.id);
     }
 
     public Integer getId() {
@@ -119,44 +126,6 @@ public class Voo implements Serializable{
 
     public void setEscalas(Aeroporto escalas) {
         this.escalas = escalas;
-    }
-
-    public List<VooAgendado> getVooagendado() {
-        return vooagendado;
-    }
-
-    public void setVooagendado(List<VooAgendado> vooagendado) {
-        this.vooagendado = vooagendado;
-    }
-
-    public Set<Aeroporto> getAeroportos() {
-        return aeroportos;
-    }
-
-    public void setAeroportos(Set<Aeroporto> aeroportos) {
-        this.aeroportos = aeroportos;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Voo other = (Voo) obj;
-        return Objects.equals(this.id, other.id);
     }
     
 }

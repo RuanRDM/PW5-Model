@@ -36,7 +36,6 @@ public class Passagem implements Serializable{
     @Length(max = 12, message = "A bagagem não pode ter mais que {max} caracteres")
     @Column(name = "bagagem", length = 40, nullable = false)
     private Integer bagagem;
-    @NotNull(message = "O Voo Agendado deve ser informado")
     @ManyToOne
     @JoinColumn(name = "vooagendado_id", referencedColumnName = "id", nullable = false)    
     private VooAgendado vooagendado;

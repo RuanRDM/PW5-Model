@@ -1,6 +1,7 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -41,18 +42,20 @@ public class Aeroporto implements Serializable{
     @ManyToOne
     @JoinColumn(name = "cidade", referencedColumnName = "id", nullable = false)
     private Cidade cidade;
+    
+    /*
     @ManyToMany
-    @JoinTable(name = "voo",
+    @JoinTable(name = "aeroporto",
             // se refere a classe aeroporto
             joinColumns = 
-                    @JoinColumn(name = "id", referencedColumnName = "nome", 
+                    @JoinColumn(name = "voos", referencedColumnName = "nome", 
                             nullable = false),
             // se refere ao tipo da lista <voo>
             inverseJoinColumns = 
-                    @JoinColumn(name = "voo", referencedColumnName = "descricao", 
+                    @JoinColumn(name = "id", referencedColumnName = "id", 
                             nullable = false)
             )            
-    private Set<Voo> voos = new HashSet<>();
+    private Set<Voo> voos = new HashSet<>();*/
     
     public Aeroporto(){
         
@@ -112,12 +115,17 @@ public class Aeroporto implements Serializable{
         this.cidade = cidade;
     }
 
-    public Set<Voo> getVoos() {
+    /*public Set<Voo> getVoos() {
         return voos;
     }
 
     public void setVoos(Set<Voo> voos) {
         this.voos = voos;
-    }
+    }*/
+
+   
+
+
+ 
     
 }
