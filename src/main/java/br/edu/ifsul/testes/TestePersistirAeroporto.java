@@ -23,7 +23,7 @@ public class TestePersistirAeroporto {
         
         Aeroporto a = new Aeroporto();
         
-        a.setCidade(em.find(Cidade.class, 14));
+        a.setCidade(em.find(Cidade.class, 18));
         a.setNome("SantosDrumond");
         a.setOperacaoNoturna(true);
         

@@ -49,9 +49,24 @@ public class Voo implements Serializable{
     @Length(max = 50, message = "A aeronave não pode ter mais que {max} caracteres")
     @Column(name = "periodicidade", length = 40, nullable = false)
     private String periodicidade;
+    
     @JoinColumn(name = "escalas", referencedColumnName = "nome", nullable = false)    
     @ManyToOne
     private Aeroporto escalas;
+    
+    @OneToMany(mappedBy = "voo", cascade = CascadeType.ALL)
+    private List<VooAgendado> vooAgendados = new ArrayList<>();
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "aeroportos",
+            joinColumns = 
+                    @JoinColumn(name = "id", referencedColumnName = "id", 
+                            nullable = false),
+            inverseJoinColumns = 
+                    @JoinColumn(name = "aeroporto", referencedColumnName = "nome", 
+                            nullable = false)
+            )            
+    private Set<Aeroporto> aeroportos = new HashSet<>();
     
     
     public Voo(){
@@ -61,7 +76,7 @@ public class Voo implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.getId());
         return hash;
     }
 
@@ -77,7 +92,7 @@ public class Voo implements Serializable{
             return false;
         }
         final Voo other = (Voo) obj;
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.getId(), other.getId());
     }
 
     public Integer getId() {
@@ -127,5 +142,27 @@ public class Voo implements Serializable{
     public void setEscalas(Aeroporto escalas) {
         this.escalas = escalas;
     }
+
+    public List<VooAgendado> getVooAgendados() {
+        return vooAgendados;
+    }
+
+    public void setVooAgendados(List<VooAgendado> vooAgendados) {
+        this.vooAgendados = vooAgendados;
+    }
+
+    public Set<Aeroporto> getAeroportos() {
+        return aeroportos;
+    }
+
+    public void setAeroportos(Set<Aeroporto> aeroportos) {
+        this.aeroportos = aeroportos;
+    }
+
+
+
+
+
+
     
 }
