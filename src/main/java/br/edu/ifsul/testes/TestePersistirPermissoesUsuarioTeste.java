@@ -7,27 +7,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public class TestePersistirUsuario {
+public class TestePersistirPermissoesUsuarioTeste {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PW5-Model-PU");
         EntityManager em = emf.createEntityManager();
-        Usuario u = new Usuario();
-        u.setAtivo(true);
-        u.setEmail("hacker@ifsul.edu.br");
-        u.setNome("hacker");
-        u.setNomeUsuario("hacker");
-        u.setSenha("1234");
+        Usuario u = em.find(Usuario.class, "ruand");
+        Permissao padmin = em.find(Permissao.class, "USUARIO");
+        padmin.getUsuarios().add(u);
         em.getTransaction().begin();
-        em.persist(u);
+        em.persist(padmin);
         em.getTransaction().commit();
         em.close();
         emf.close();
         
-        
     }
-
+    
 }
