@@ -39,9 +39,7 @@ public class VooAgendado implements Serializable{
     @Length(max = 25, message = "A aeronave não pode ter mais que {max} caracteres")
     @Column(name = "nome", length = 40, nullable = false)
     private String aeronave;
-    @NotBlank(message = "O total de passageiros não pode estar em branco")
-    @Length(max = 50, message = "O total de passageiros não pode ter mais que {max} caracteres")
-    @Column(name = "totalpassageiros", length = 40, nullable = false)
+    @Column(name = "totalpassageiros", nullable = false)
     private Integer totalPassageiros;
     @Temporal(TemporalType.DATE)
     @NotNull(message = "A data deve ser informada")

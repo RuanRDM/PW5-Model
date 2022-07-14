@@ -50,10 +50,6 @@ public class Voo implements Serializable{
     @Column(name = "periodicidade", length = 40, nullable = false)
     private String periodicidade;
     
-    @JoinColumn(name = "escalas", referencedColumnName = "nome", nullable = false)    
-    @ManyToOne
-    private Aeroporto escalas;
-    
     @OneToMany(mappedBy = "voo", cascade = CascadeType.ALL)
     private List<VooAgendado> vooAgendados = new ArrayList<>();
     
@@ -142,14 +138,6 @@ public class Voo implements Serializable{
 
     public void setPeriodicidade(String periodicidade) {
         this.periodicidade = periodicidade;
-    }
-
-    public Aeroporto getEscalas() {
-        return escalas;
-    }
-
-    public void setEscalas(Aeroporto escalas) {
-        this.escalas = escalas;
     }
 
     public List<VooAgendado> getVooAgendados() {

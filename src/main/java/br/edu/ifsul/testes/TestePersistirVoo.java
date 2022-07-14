@@ -27,7 +27,7 @@ public class TestePersistirVoo {
         
         
         v.setAtivo(true);
-        v.setEscalas(em.find(Aeroporto.class, 18));
+        //v.setEscalas(em.find(Aeroporto.class, 18));
         v.setTempoEstimado(50.0);
         v.setPeriodicidade("1000 vez");
         v.setDescricao("teste");
