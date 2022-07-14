@@ -72,6 +72,15 @@ public class Voo implements Serializable{
     public Voo(){
         
     }
+    
+    public void adicionarVooAgendado(VooAgendado obj){
+        obj.setVoo(this);
+        this.vooAgendados.add(obj);
+    }
+    
+    public void removerVooAgendado(int index){
+        this.vooAgendados.remove(index);
+    }
 
     @Override
     public int hashCode() {

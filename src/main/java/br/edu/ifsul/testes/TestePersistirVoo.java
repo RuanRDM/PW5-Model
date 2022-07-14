@@ -28,9 +28,9 @@ public class TestePersistirVoo {
         
         v.setAtivo(true);
         v.setEscalas(em.find(Aeroporto.class, 18));
-        v.setTempoEstimado(65.0);
-        v.setPeriodicidade("1 vez ano");
-        v.setDescricao("voo para disney");
+        v.setTempoEstimado(50.0);
+        v.setPeriodicidade("1000 vez");
+        v.setDescricao("teste");
        
 
         em.getTransaction().begin();

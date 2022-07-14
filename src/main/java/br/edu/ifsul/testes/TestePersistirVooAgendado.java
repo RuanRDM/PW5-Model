@@ -23,9 +23,9 @@ public class TestePersistirVooAgendado {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PW5-Model-PU");
         EntityManager em = emf.createEntityManager();
         VooAgendado v = new VooAgendado();
-        v.setAeronave("TecoTeco");
+        v.setAeronave("teste");
         v.setData(Calendar.getInstance());
-        v.setTotalPassageiros(6);
+        v.setTotalPassageiros(5);
         v.setVoo(em.find(Voo.class, 14));
         //v.getPassagens().add(em.find(Passagem.class, 7));
 

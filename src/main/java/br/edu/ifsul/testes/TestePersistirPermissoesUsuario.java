@@ -11,10 +11,10 @@ public class TestePersistirPermissoesUsuario {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PW5-Model-PU");
         EntityManager em = emf.createEntityManager();
-        Usuario u = em.find(Usuario.class, "ruand");
+        Usuario u = em.find(Usuario.class, "hacker");
         Permissao pusuario = em.find(Permissao.class, "USUARIO");
-        Permissao padmin = em.find(Permissao.class, "ADMINISTRADOR");
-        u.getPermissoes().add(padmin);
+        //Permissao padmin = em.find(Permissao.class, "ADMINISTRADOR");
+        //u.getPermissoes().add(padmin);
         u.getPermissoes().add(pusuario);
         em.getTransaction().begin();
         em.persist(u);
